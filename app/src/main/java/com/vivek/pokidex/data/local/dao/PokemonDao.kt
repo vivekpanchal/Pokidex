@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 interface PokemonDao {
 
     @Query("SELECT * FROM pokemon ORDER BY page ASC, name ASC")
-    fun getAllPokemon(): PagingSource<Int, PokemonEntity>
+    fun getAllPokemon(): Flow<List<PokemonEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(pokemon: List<PokemonEntity>)

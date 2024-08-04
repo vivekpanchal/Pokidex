@@ -5,12 +5,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
@@ -28,6 +31,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -50,6 +54,8 @@ import com.vivek.pokidex.presentation.ui.components.SearchBarPokeDex
 import com.vivek.pokidex.presentation.ui.components.SortMenu
 import com.vivek.pokidex.presentation.ui.components.SortOrder
 import com.vivek.pokidex.presentation.viewModel.PokemonViewModel
+import com.vivek.pokidex.utils.Resource
+import kotlinx.coroutines.flow.collectLatest
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -58,7 +64,7 @@ fun PokemonListScreen(
     viewModel: PokemonViewModel = hiltViewModel(),
     onCardClick: (String) -> Unit
 ) {
-    val pokemonList = viewModel.pokemonList.collectAsState().value.collectAsLazyPagingItems()
+//    val pokemonList = viewModel.pokemonList.collectAsState().value.collectAsLazyPagingItems()
     val searchQuery = remember { mutableStateOf("") }
     val sortOrder = remember { mutableStateOf(SortOrder.None) }
 
@@ -89,14 +95,17 @@ fun PokemonListScreen(
                     ) {
                         DropdownMenuItem(text = { Text(text = "Sort by Level") }, onClick = {
                             sortOrder.value = SortOrder.Level
+                            viewModel.sortPokemon(sortOrder.value)
                             filterIconState = false
                         })
                         DropdownMenuItem(text = { Text(text = "Sort by HP") }, onClick = {
                             sortOrder.value = SortOrder.Hp
+                            viewModel.sortPokemon(sortOrder.value)
                             filterIconState = false
                         })
                         DropdownMenuItem(text = { Text(text = "Default") }, onClick = {
                             sortOrder.value = SortOrder.None
+                            viewModel.sortPokemon(sortOrder.value)
                             filterIconState = false
                         })
                     }
@@ -114,7 +123,7 @@ fun PokemonListScreen(
 
                 TextField(
                     value = searchQuery.value,
-                    onValueChange = { str->
+                    onValueChange = { str ->
                         searchQuery.value = str
                         viewModel.searchQuery(searchQuery.value)
                     },
@@ -129,57 +138,72 @@ fun PokemonListScreen(
                     }
                 )
 
-                // Check if the list is currently loading
-                val isLoading = pokemonList.loadState.refresh is LoadState.Loading
+                val pokemonState by viewModel.pokemon.collectAsState()
 
-                if (isLoading) {
-                    // Show a loader when the data is initially loading
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        CircularProgressIndicator()
-                    }
-                } else {
-                    LazyColumn(
-                        contentPadding = PaddingValues(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        items(pokemonList.itemCount) { idx ->
-                            pokemonList[idx]?.let {
-                                PokemonCard(it) {
-                                    onCardClick.invoke(it.id)
+                when (pokemonState) {
+                    is Resource.Error -> {
+                        // Show an error message
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Text(text = "Failed to load data: ${pokemonState.message}")
+                                Spacer(modifier = Modifier.height(16.dp))
+                                Button(onClick = { viewModel.fetchPokemon() }) {
+                                    Text("Retry")
                                 }
                             }
                         }
+                    }
 
-                        // Handle loading more items at the end of the list
-                        when (pokemonList.loadState.append) {
-                            is LoadState.Loading -> {
-                                item {
+                    is Resource.Loading -> {
+                        // Show initial loading indicator
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            CircularProgressIndicator()
+                        }
+                    }
+
+                    is Resource.Success -> {
+                        // Show the list of Pokémon
+                        val pokemonList = pokemonState.data ?: emptyList()
+
+                        LazyColumn(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(MaterialTheme.colorScheme.background),
+                            contentPadding = PaddingValues(vertical = 8.dp)
+                        ) {
+                            itemsIndexed(pokemonList) { index, pokemon ->
+                                PokemonCard(pokemon) {
+                                    onCardClick.invoke(pokemon.id)
+                                }
+
+                                // Trigger loading more when near the bottom
+                                if (index >= pokemonList.size - 1) {
+                                    LaunchedEffect(Unit) {
+                                        viewModel.loadMore()
+                                    }
+                                }
+
+                            }
+
+                            // Bottom loading indicator
+                            item {
+                                if (pokemonState is Resource.Loading) {
                                     Box(
-                                        modifier = Modifier.fillMaxWidth(),
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(16.dp),
                                         contentAlignment = Alignment.Center
                                     ) {
                                         CircularProgressIndicator()
                                     }
                                 }
                             }
-
-                            is LoadState.Error -> {
-                                item {
-                                    Text(
-                                        text = "Error loading more Pokémon. Try again.",
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(16.dp),
-                                        textAlign = TextAlign.Center,
-                                        color = MaterialTheme.colorScheme.error
-                                    )
-                                }
-                            }
-
-                            else -> Unit
                         }
                     }
                 }
