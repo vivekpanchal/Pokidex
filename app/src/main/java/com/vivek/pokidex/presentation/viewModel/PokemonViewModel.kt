@@ -48,6 +48,7 @@ class PokemonViewModel @Inject constructor(
         }
     }
 
+
 //    // Function to sort and update the paging data
 //    fun sortPokemon(sortOrder: SortOrder) {
 //        _pokemonList.value = getPokemonUseCase.execute().cachedIn(viewModelScope).map { pagingData ->
