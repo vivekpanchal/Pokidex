@@ -9,6 +9,6 @@ interface ApiService {
 
 
     @GET(Endpoints.CARDS)
-    suspend fun getPokemonCards(@Query("pageSize") pageSize: Int=20,
+    suspend fun getPokemonCards(@Query("pageSize") pageSize: Int=50,
                                 @Query("page") page: Int): PokemonResponse
 }

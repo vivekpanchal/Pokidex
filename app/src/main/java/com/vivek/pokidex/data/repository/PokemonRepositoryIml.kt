@@ -52,7 +52,7 @@ class PokemonRepositoryIml @Inject constructor(
             saveFetchResult = { pokemonResponse ->
                 dao.insertAll(pokemonResponse.data.map { it.toEntity(currentPage) })
             },
-            shouldFetch = { it.isEmpty() }
+            shouldFetch = { true }
         )
     }
 
