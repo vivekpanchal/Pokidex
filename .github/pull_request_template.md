@@ -1,39 +1,61 @@
-# Description
+# Pull Request Title
+<!-- Use a descriptive title that summarizes the changes -->
 
-Please include a summary of the changes and the related issue. Please also include relevant motivation and context. List any dependencies that are required for this change.
+## Description
+<!-- Provide a concise description of what this PR does. Include context if necessary. -->
+- [ ] Short description of the feature or issue addressed.
+- [ ] Key highlights of the implementation.
 
-Fixes # (issue)
+---
 
-## Type of change
+## Related Issues or Tickets
+<!-- Link to any related issues or tasks -->
+Fixes #<issue_number>
+Related to #<issue_number> (if applicable)
 
-Please delete options that are not relevant.
+---
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] This change requires a documentation update
+## Type of Change
+<!-- Check all relevant options -->
+- [ ] 🐛 Bug Fix
+- [ ] ✨ New Feature
+- [ ] 🚀 Performance Improvement
+- [ ] 📝 Documentation Update
+- [ ] 🔨 Refactoring
+- [ ] 🧹 Code Cleanup
+- [ ] ⚙️ Build/CI Change
+- [ ] 🔒 Security Fix
 
-# How Has This Been Tested?
+---
 
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
+## Checklist
+<!-- Ensure your PR meets these requirements -->
+- [ ] Code compiles and runs locally.
+- [ ] Relevant unit tests added or updated.
+- [ ] Documentation updated (if applicable).
+- [ ] Linting and formatting applied.
+- [ ] All dependencies are up-to-date.
+- [ ] Changes are backward-compatible.
 
-- [ ] Test A
-- [ ] Test B
+---
 
-**Test Configuration**:
-* Firmware version:
-* Hardware:
-* Toolchain:
-* SDK:
+## Screenshots (if applicable)
+<!-- Add screenshots or recordings that demonstrate the changes -->
+| Before | After |
+|--------|-------|
+| _Image/Video Before_ | _Image/Video After_ |
 
-# Checklist:
+---
 
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] New and existing unit tests pass locally with my changes
-- [ ] Any dependent changes have been merged and published in downstream modules
+## How Has This Been Tested?
+<!-- Describe the testing strategy -->
+- [ ] Unit Tests
+- [ ] Integration Tests
+- [ ] Manual Testing:
+  - [ ] Device/Platform: `<list devices/platforms>`
+  - [ ] Steps: `<describe steps>`
 
+---
+
+## Additional Context or Notes
+<!-- Add any additional context, such as trade-offs, technical debt, or follow-ups -->
