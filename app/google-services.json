@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "447753837553",
+    "firebase_url": "https://fir-92580.firebaseio.com",
+    "project_id": "fir-92580",
+    "storage_bucket": "fir-92580.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447753837553:android:c4bab4578edb806dda4250",
+        "android_client_info": {
+          "package_name": "com.vivek.pokidex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "447753837553-a5lmvml7805vd08s7e44unm87alstlgp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQoZPdh1b8cJH_12Vbn0oivXpA3RDs9us"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "447753837553-a5lmvml7805vd08s7e44unm87alstlgp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
