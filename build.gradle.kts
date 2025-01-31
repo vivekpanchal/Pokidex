@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.kotlin.kapt) apply false
     id("com.google.dagger.hilt.android") version "2.51.1" apply false
+    alias(libs.plugins.google.gms.google.services) apply false
+    alias(libs.plugins.google.firebase.crashlytics) apply false
 
 //    alias(libs.plugins.hilt.android) version libs.versions.hilt apply true
 }

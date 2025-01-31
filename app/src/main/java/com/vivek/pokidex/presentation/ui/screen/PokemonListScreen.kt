@@ -189,6 +189,13 @@ fun PokemonListScreen(
 
 }
 
+//preview
+@Preview
+@Composable
+fun PokemonListScreenPreview() {
+    PokemonListScreen {}
+}
+
 
 
 

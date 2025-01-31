@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt.android)
+    alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.google.firebase.crashlytics)
 }
 
 android {
@@ -25,9 +27,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -75,6 +75,7 @@ dependencies {
 
     //Serializer
     implementation(libs.moshi.kotlin)
+    implementation(libs.firebase.crashlytics)
     kapt(libs.moshi.codegen)
 
 
@@ -93,7 +94,6 @@ dependencies {
 
 
 
-
     //Image Loading
     implementation(libs.coil.compose)
 
@@ -106,8 +106,6 @@ dependencies {
 
     //Navigation
     implementation(libs.androidx.navigation.compose)
-
-
 
 
 

@@ -40,7 +40,6 @@ import com.vivek.pokidex.domain.model.Pokemon
 import com.vivek.pokidex.presentation.ui.components.SortOrder
 import com.vivek.pokidex.presentation.viewModel.PokemonViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PokemonDetailScreen(
     pokemonId: String,
