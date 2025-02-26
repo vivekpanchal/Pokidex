@@ -57,14 +57,13 @@ class ApplicationModule {
             context,
             AppDatabase::class.java,
             "pokemon_db"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 
     @Provides
     fun providePokemonDao(appDatabase: AppDatabase): PokemonDao {
         return appDatabase.pokemonDao()
     }
-
 
 
 }
