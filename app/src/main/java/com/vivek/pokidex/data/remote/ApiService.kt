@@ -7,7 +7,9 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET(Endpoints.CARDS)
-    suspend fun getPokemonCards(@Query("pageSize") pageSize: Int=20,
-                                @Query("page") page: Int): PokemonResponse
+    @GET(Endpoints.POKEMON)
+    suspend fun getPokemonList(
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
+    ): PokemonResponse
 }

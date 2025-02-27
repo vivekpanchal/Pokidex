@@ -2,8 +2,8 @@ package com.vivek.pokidex.data.remote
 
 object Endpoints {
 
-    const val BASE_URL = "https://api.pokemontcg.io/v2/"
-    const val CARDS = "cards"
+    const val BASE_URL = "https://pokeapi.co/api/v2/"
+    const val POKEMON = "pokemon"
 
 
 }
