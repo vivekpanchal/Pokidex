@@ -1,15 +1,73 @@
-*.iml
-.gradle
+# Gradle files
+.gradle/
+/build/
+!gradle-wrapper.jar
 /local.properties
-/.idea/caches
-/.idea/libraries
+/.idea/caches/
+/.idea/libraries/
 /.idea/modules.xml
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+/.idea/httpRequests
+/.idea/deploymentTargetDropDown.xml
+
+# Android Studio files
+captures/
+
+# Keystore files
+*.jks
+*.keystore
+
+# Google Services
+/google-services.json
+
+# NDK
+/obj/
+
+# IntelliJ
+*.iml
+
+# Miscellaneous
+*.log
+*.swp
+*.swo
+*.swn
+
+# Exclude generated JSON files
+/out/
+
+# Crashlytics
+fabric.properties
+.crashlytics/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Gradle Wrapper
+/gradle/wrapper/gradle-wrapper.properties
+/gradle/wrapper/gradle-wrapper.jar
+
+# Dependency directories
+/.gradle/
+/build/
+
+# Kotlin
+/.konan/
+
+# Jetpack Compose Preview
+/.idea/compose-build/
+
+# Virtual device files
+*.hprof
+*.lock
+*.log
+*.mp4
+
+# Custom exclusions
+*.apk
+*.aab
+*.dex
