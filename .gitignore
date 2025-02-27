@@ -63,3 +63,7 @@ fastlane/test_output
 *.apk
 *.aab
 *.dex
+
+
+.DS_Store
+.DS_Store?
