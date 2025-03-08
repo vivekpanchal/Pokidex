@@ -38,9 +38,11 @@ fun PokemonListScreen(
     onCardClick: (String) -> Unit
 ) {
     val pokemonList = viewModel.pokemonList.collectAsLazyPagingItems()
-    Surface {
+    Surface() {
 
-        Column {
+        Column(
+            modifier = Modifier.background(MaterialTheme.colorScheme.background)
+        ) {
             Spacer(modifier = Modifier.size(20.dp))
 
             Image(
@@ -50,7 +52,6 @@ fun PokemonListScreen(
                     .size(100.dp)
                     .align(Alignment.CenterHorizontally)
             )
-
 
             Column(
                 modifier = Modifier

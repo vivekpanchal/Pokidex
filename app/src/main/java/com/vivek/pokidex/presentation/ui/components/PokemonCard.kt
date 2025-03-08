@@ -1,5 +1,6 @@
 package com.vivek.pokidex.presentation.ui.components
 
+import android.provider.CalendarContract.Colors
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -43,7 +44,12 @@ fun PokemonCard(pokemon: PokemonItem, onClick: (String) -> Unit) {
         shape = RoundedCornerShape(16.dp)
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize()
+                .background(
+                    brush = Brush.linearGradient(
+                        colors = listOf(MaterialTheme.colorScheme.onBackground,MaterialTheme.colorScheme.secondary)
+                    )
+                ),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
