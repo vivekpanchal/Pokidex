@@ -3,14 +3,7 @@
 /build/
 !gradle-wrapper.jar
 /local.properties
-/.idea/caches/
-/.idea/libraries/
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-/.idea/httpRequests
-/.idea/deploymentTargetDropDown.xml
+
 
 # Android Studio files
 captures/
@@ -58,8 +51,7 @@ fastlane/test_output
 # Kotlin
 /.konan/
 
-# Jetpack Compose Preview
-/.idea/compose-build/
+*.idea/
 
 # Virtual device files
 *.hprof
@@ -71,3 +63,7 @@ fastlane/test_output
 *.apk
 *.aab
 *.dex
+
+
+.DS_Store
+.DS_Store?

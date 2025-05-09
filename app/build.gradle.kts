@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.google.firebase.crashlytics)
+    alias(libs.plugins.compose.compiler)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -66,6 +68,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.palette)
 
 
     // Coroutines
@@ -76,7 +79,7 @@ dependencies {
     //Serializer
     implementation(libs.moshi.kotlin)
     implementation(libs.firebase.crashlytics)
-    kapt(libs.moshi.codegen)
+    ksp(libs.moshi.codegen)
 
 
     //NETWORKING
@@ -101,7 +104,7 @@ dependencies {
 
     //DI
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
     //Navigation
@@ -113,9 +116,9 @@ dependencies {
     implementation(libs.timber)
 
     //Database
-    implementation(libs.androidx.room.ktx)
-    implementation( libs.androidx.room.paging)
-    kapt(libs.androidx.room.compiler)
+//    implementation(libs.androidx.room.ktx)
+//    implementation( libs.androidx.room.paging)
+//    kapt(libs.androidx.room.compiler)
 
 
 
